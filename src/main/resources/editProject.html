@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KristianiaProject</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Edit Project</h1>
+Return to <a href="/">main</a><br>
+<form method="POST" action="/projectEdit">
+    <label>Choose project to edit </label>
+    <select class = "projects" id="choice" name="value"></select><button type="button" onclick="populateFields()">Show</button><br>
+    <label>Name: </label><input type="text" id="selectProject" name="projectName"><br>
+    <label>Description</label><input type="text" id="selectproject1" name="description"><br>
+    <label>Change Date: <input id="pDate" type="date" name="date" required/></label><button>change</button><br>
+</form><br><br>
+<form method="POST" action="/projectAddMember">
+    <label>Add project member to project</label><select id="addProjectMembers" name="project"></select>
+    <select id="projectMembers" name="member"></select><button>Add</button><br>
+</form><br>
+<form method="POST" action="/projectRemoveMember">
+    <label>Remove Project member from project</label>    <select id="removeProjectMembers" name="project"></select>
+    <select id="projectMembers2" name="projectMember"></select><button>Remove</button><br>
+</form>
+<br><br>
+<form method="POST" action="/projectDeletion">
+    <label>Delete project </label>
+    <select id="selectProjectDelete" name="value"></select><button>Delete</button>
+</form>
+(IF you decide to delete a project which contains a task, the task will also be deleted)
+
+
+<div id="listProjects"></div>
+<script>
+
+
+    function populateFields(){
+        var getchoice = document.getElementById("choice").value;
+        fetch("/projectPopulate", {
+            method: "POST",
+            body: JSON.stringify(getchoice)
+        }).then(function (response) {
+            return response.text()
+        }).then(function(text) {
+            let name = text.substring(5, text.indexOf("pDesc"));
+            let desc = text.substring(text.indexOf("pDesc")+5, text.indexOf("pDate"));
+            let date = text.substring(text.indexOf("pDate")+5, text.length)
+            let getname = document.getElementById("selectProject")
+            let getDesc = document.getElementById("selectproject1")
+            let getDate = document.getElementById("pDate");
+            getname.value = name;
+            getDesc.value = desc;
+            getDate.value = date;
+        });
+    }
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("memberSelect").innerHTML = text;
+    });
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("selectProjectDelete").innerHTML = text;
+    });
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("removeProjectMembers").innerHTML = text;
+    });
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("removeProjectMembers2").innerHTML = text;
+    });
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("addProjectMembers").innerHTML = text;
+    });
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers2").innerHTML = text;
+    });
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("choice").innerHTML = text;
+    });
+    fetch("/taskNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("tasks").innerHTML = text;
+    });
+
+
+</script>
+</body>
+</html>

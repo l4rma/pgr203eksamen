@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update task status | KristianiaProject</title>
+</head>
+<body>
+    <h2>Update task status:</h2>
+    <form method="POST" action="/updateTaskStatus">
+        <div><label>Task with current status: </label> <select name="tasks" id="tasks"></select></div>
+        <div><label>New task status: <input type="text" name="newStatus" required/></label></div>
+        <button>Update status</button>
+    </form>
+</body>
+<script>
+    fetch("/tasksWithCurrentStatus")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("tasks").innerHTML = text;
+    });
+</script>
+</html>

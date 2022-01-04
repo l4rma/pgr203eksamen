@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Navigation:</h2>
+
+<div id ="mainDiv"></div>
+
+
+</body>
+<script>
+    fetch("/mainpageAddingButtons")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("mainDiv").innerHTML = text;
+    });
+
+
+    function x(){
+        fetch("/projectMembers")
+            .then(function(response) {
+                return response.text();
+            }).then(function(text) {
+            document.getElementById("projectMembers").innerHTML = text;
+        });
+        fetch("/project")
+            .then(function(response) {
+                return response.text();
+            }).then(function(text) {
+            document.getElementById("projectsDiv").innerHTML = text;
+        });
+        fetch("/tasks")
+            .then(function(response) {
+                return response.text();
+            }).then(function(text) {
+            document.getElementById("tasks").innerHTML = text;
+        });
+    }
+
+
+</script>

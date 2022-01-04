@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a project | KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Create a project</h1>
+
+<form method="POST" action="/createProject">
+    <div><label>Project Title: <input type="text" name="projectName" required/></label></div>
+    <div><label>Project Description: <input type="text" name="projectDescription" required/></label></div>
+    <div><label>Due Date: <input type="date" name="date" required/></label></div>
+    <button>Create Project</button>
+</form>
+
+<div>
+    Return to <a href="/">main</a>
+</div>
+</body>
+</html>

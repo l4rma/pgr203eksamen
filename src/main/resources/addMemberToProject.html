@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | KristianiaProject</title>
+</head>
+<body>
+<h2>Projects</h2>
+<form method="POST" action="/addMemberToProject">
+<select id="members" name="members" ></select>
+<select id="projects" name="projects"></select>
+<button>Add member to project</button>
+</form>
+</body>
+<script>
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+            document.getElementById("projects").innerHTML = text;
+    });
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("members").innerHTML = text;
+    });
+</script>
+</html>

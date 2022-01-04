@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add project member | KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Add project member</h1>
+
+<form method="POST" action="/createProjectMember">
+    <div><label>First Name: <input type="text" name="firstName" required/></label></div>
+    <div><label>Last Name: <input type="text" name="lastName" required/></label></div>
+    <div><label>Email address: <input type="email" name="emailAddress" required/></label></div>
+    <div><label>Password: <input type="password" name="password" minlength="8" required/></label></div>
+    <button>Add</button>
+</form>
+
+<div>
+    Return to <a href="/">main</a>
+</div>
+</body>
+</html>

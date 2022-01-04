@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Project Managing</h1>
+Return to <a href="/">main</a><br>
+<form>
+    <label>Choose project: <select id="projects" name="projects"></select></label><button type="button" onclick="showProject()">Show</button>
+</form><br>
+<form>
+    <label>Sort by projectmember: <select id="projectMembers" name="name"></select></label><button type="button" onclick="sortProjectMembers()">Show</button>
+</form><br>
+<button onclick="showALl()">Show All</button>
+<div id="projectsDiv"></div>
+<script>
+    function showProject(){
+        let getchoice = document.getElementById("projects").value;
+        fetch("/projectShowSingle", {
+            method: "POST",
+            body: JSON.stringify(getchoice)
+        }).then(function (response) {
+            return response.text()
+        }).then(function(text) {
+            var getDiv = document.getElementById("projectsDiv");
+            getDiv.innerHTML = text;
+        });
+    }
+
+    function sortProjectMembers() {
+        let getchoice = document.getElementById("projectMembers").value;
+        fetch("/projectSortMembers", {
+            method: "POST",
+            body: JSON.stringify(getchoice)
+        }).then(function (response) {
+            return response.text()
+        }).then(function(text) {
+            var getDiv = document.getElementById("projectsDiv");
+            getDiv.innerHTML = text;
+        });
+    }
+
+    function showALl(){
+        fetch("/project")
+            .then(function(response) {
+                return response.text();
+            }).then(function(text) {
+            document.getElementById("projectsDiv").innerHTML = text;
+        });
+    }
+
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projects").innerHTML = text;
+    });
+    fetch("/taskNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("tasks").innerHTML = text;
+    });
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+
+
+
+</script>
+</body>
+</html>

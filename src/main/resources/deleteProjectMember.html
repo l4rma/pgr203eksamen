@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Project member | KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Delete Project Member</h1>
+Return to <a href="/">main</a><br>
+
+<form method="POST" action="/deleteProjectMember">
+    <select id="projectMembers" name="projectMemberId"></select>
+    <button>Delete member</button>
+</form>
+
+
+</body>
+<script>
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+</script>
+</html>

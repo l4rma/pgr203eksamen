@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KristianiaProject</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Show and sort Tasks</h1>
+Return to <a href="/">main</a><br>
+<form method="POST" action="/taskSortMember">
+    <label>Sort by member: </label>
+    <select id="memberSelect" name = "name"></select>
+<button id="memberBtn" onclick="">OK</button>
+</form>
+<form method="POST" action="/returnTaskBasedOnStatus">
+    <label>Sort by status: </label>
+    <select id="selectStatus" name="status"></select><button>OK</button>
+</form>
+
+<div id="listTask"></div>
+<script>
+
+    fetch("/tasks")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("listTask").innerHTML = text;
+    });
+    fetch("/projectMemberNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("memberSelect").innerHTML = text;
+    });
+    fetch("/taskStatus")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("selectStatus").innerHTML = text;
+    });
+    fetch("/taskNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("selectTask").innerHTML = text;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add a task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Create a Task</h1>
+
+<form method="POST" action="/createTask">
+    <div><label>Project: </label> <select name="projectId" id="projectId"></select></div>
+    <div><label>Task Title: <input type="text" name="taskName" required/></label></div>
+    <div><label>Task Description: <input type="text" name="taskDescription" required/></label></div>
+    <div><label>Due Date: <input type="date" name="dueDate" required/></label></div>
+    <div><label>Status: </label><input type="text" name="status" placeholder="WIP" required></div>
+    <button>Create Task</button>
+</form>
+<script>
+    fetch("/projectNames")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text){
+        document.getElementById("projectId").innerHTML += text;
+
+    });
+</script>
+<div>
+    Return to <a href="/">main</a>
+</div>
+</body>
+</html>
