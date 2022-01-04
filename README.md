@@ -1,4 +1,4 @@
-"# pgr203eksamen"
+# pgr203eksamen
 ![Java CI with Maven](https://github.com/kristiania/pgr203eksamen-GeorgTollefsen/workflows/Java%20CI%20with%20Maven/badge.svg)
 <h2>HttpServer</h2>
 Eksamensbesvarelse høsten 2020.
